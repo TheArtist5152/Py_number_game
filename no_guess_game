@@ -1,0 +1,58 @@
+import random
+from datetime import datetime
+
+def difficulty(select):
+    if select == 1:
+        level = 'Easy'
+        guess = 10
+    elif select == 2:
+        guess = 5
+        level = 'Medium'
+    elif select == 3:
+        guess = 3
+        level = 'Hard'
+    else: 
+        print("You Enter Invalid Input..!!")
+        return ('Unknown', 0)
+    return (level, guess)
+
+def log_game(outcome, level, name, num):
+    current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    log_entry = f"\n**************************Log In: {current_time}*************************************\
+          \n\t Username: {name}---------- Level: {level}------------- Outcome: {outcome}--------------Number: {num}"
+    with open('game_log.txt', 'a') as log_file:
+        log_file.write(log_entry)
+
+num = random.randint(1, 100)
+usname = input("Enter Player Name:")
+level, guess = ('Unknown', 0)
+
+while True:
+    try:
+        select = int(input("Select Levels \n \t\t 1. Easy \n \t\t 2. Medium \n \t\t 3. Hard  \t\t"))
+        level, guess = difficulty(select)
+        break  # Break out of the loop if a valid input is provided
+    except ValueError:
+        print("Invalid input. Please enter a valid integer for the difficulty level.")
+    except Exception as e:
+        print(f"An unexpected error occurred: {e}")
+
+while guess > 0:
+    guess_num = int(input(f"You have {guess} chance(s) remaining\nEnter your guess: "))
+    
+    if guess_num == num:
+        print(f"You guessed correctly! The number is {num}")
+        log_game("Win", level, usname, num)
+        break
+    elif guess_num > num:
+        print("Your guess is too large.")
+    elif guess_num < num:
+        print("Your guess is too small.")
+
+    guess -= 1
+
+else:
+    print(f"Game over. The correct number was {num}")
+    log_game("Lose", level, usname, num)
+
+print("Game log has been saved to 'game_log.txt'")

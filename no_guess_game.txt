@@ -1,0 +1,25 @@
+Discription:
+The script starts by importing necessary modules, such as random for generating a random number and datetime for timestamping log entries.
+
+The difficulty function takes a user-selected difficulty level (select) as input and returns a tuple (level, guess). The level is a string representing the difficulty level ('Easy', 'Medium', 'Hard'), and guess is the number of chances allowed for guessing the correct number.
+Logging Function:
+
+The log_game function logs game outcomes along with relevant information such as the current timestamp, player name, difficulty level, game outcome (Win/Lose), and the correct number.
+
+A random number (num) between 1 and 100 is generated for the user to guess.
+
+The player is prompted to enter their name.
+
+The user is prompted to select a difficulty level by entering 1 for Easy, 2 for Medium, or 3 for Hard. Exception handling is implemented to catch input errors, ensuring the program doesn't crash if the user provides invalid input.
+
+If the user provides a valid input, the game loop starts. The loop allows the user to make guesses until they either guess the correct number or run out of chances.
+
+The player is prompted to input a guess, and the code compares the guess to the randomly generated number (num). Feedback is provided to the user about whether the guess is too large, too small, or correct.
+
+The game outcome is logged, and the number of remaining chances is decremented. If the user guesses correctly, the loop is exited with a "Win" outcome. If the chances run out, the loop is exited with a "Lose" outcome.
+
+After the game loop ends, a message is printed indicating whether the player won or lost. Additionally, the game outcome is logged.
+
+The game log is saved to a file named 'game_log.txt'.
+
+A message is printed indicating that the game log has been saved to 'game_log.txt'.
